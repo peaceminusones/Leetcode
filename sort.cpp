@@ -2,60 +2,101 @@
 #include <vector>
 using namespace std;
 
-void merge(vector<int> &arr, int l, int m, int r)
+class Solution
 {
-    vector<int> res;
-
-    int i = l;
-    int j = m + 1;
-
-    while (i <= m && j <= r)
+public:
+    void quicksort(vector<int> &nums, int l, int r)
     {
-        if (arr[i] < arr[j])
+        if (l < r)
         {
-            res.push_back(arr[i++]);
-        }
-        else
-        {
-            res.push_back(arr[j++]);
+            int mid = parition(nums, l, r);
+            quicksort(nums, l, mid - 1);
+            quicksort(nums, mid + 1, r);
         }
     }
 
-    while (i <= m)
-        res.push_back(arr[i++]);
-    while (j <= r)
-        res.push_back(arr[j++]);
-
-    for (int k = 0; k < res.size(); k++)
-        arr[k + l] = res[k];
-}
-
-void merge_sort(vector<int> &arr, int l, int r)
-{
-    if (l < r)
+    int parition(vector<int> &nums, int l, int r)
     {
-        int m = (l + r) / 2;
-        merge_sort(arr, l, m);
-        merge_sort(arr, m + 1, r);
-        merge(arr, l, m, r);
+        int mid = nums[l];
+        int i = l, j = r;
+        while (i < j)
+        {
+            while (i < j && nums[j] >= mid)
+                j--;
+            while (i < j && nums[i] <= mid)
+                i++;
+
+            if (i < j)
+                swap(nums[i], nums[j]);
+        }
+        swap(nums[i], nums[l]); //!!一开始这里错了！
+        return i;
     }
-}
+
+    void mergesort(vector<int> &nums, int l, int r)
+    {
+        if (l < r)
+        {
+            int m = l + (r - l) / 2;
+            mergesort(nums, l, m);
+            mergesort(nums, m + 1, r);
+            merge(nums, l, m, r);
+        }
+    }
+
+    void merge(vector<int> &nums, int l, int m, int r)
+    {
+        int i = l, j = m + 1;
+        vector<int> res;
+        while (i <= m && j <= r)
+        {
+            if (nums[i] <= nums[j])
+            {
+                res.push_back(nums[i]);
+                i++;
+            }
+            else
+            {
+                res.push_back(nums[j]);
+                j++;
+            }
+        }
+
+        if (i <= m)
+            res.insert(res.end(), nums.begin() + i, nums.begin() + m + 1);
+        if (j <= r)
+            res.insert(res.end(), nums.begin() + j, nums.begin() + r);
+
+        // while (i <= m)
+        // {
+        //     res.push_back(nums[i++]);
+        // }
+        // while (j <= r)
+        // {
+        //     res.push_back(nums[j++]);
+        // }
+
+        for (int i = 0; i < res.size(); i++)
+        {
+            nums[l + i] = res[i];
+        }
+    }
+};
 
 int main()
 {
-    vector<int> arr;
+    vector<int> nums;
     int item;
     while (cin >> item)
     {
-        arr.push_back(item);
+        nums.push_back(item);
     }
-    cin.clear();
-    cin.ignore();
 
-    merge_sort(arr, 0, arr.size() - 1);
+    Solution s;
+    // s.quicksort(nums, 0, nums.size() - 1);
+    s.mergesort(nums, 0, nums.size() - 1);
 
-    for (int i = 0; i < arr.size(); i++)
-        cout << arr[i] << " ";
-
+    for (auto n : nums)
+        cout << n << " ";
     return 0;
 }

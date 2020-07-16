@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
+#include <queue>
 using namespace std;
 
 class Solution
@@ -39,7 +41,49 @@ public:
     // 方法二：二分查找 ==================================================================
     int kthSmallest(vector<vector<int>> &matrix, int k)
     {
-        
+        if (matrix.empty())
+            return 0;
+        int n = matrix.size();
+        if (k >= pow(n, 2))
+            return 0;
+        int left = matrix[0][0];
+        int right = matrix[n - 1][n - 1];
+        while (left < right)
+        {
+            int mid = left + (right - left) / 2;
+            // 如果小于或等于mid的个数小于k
+            if (check(matrix, k, mid) < k)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid;
+            }
+        }
+        return right;
+    }
+
+    int check(vector<vector<int>> &matrix, int k, int mid)
+    {
+        int n = matrix.size();
+        int count = 0;
+        // 从左下角开始
+        int i = n - 1;
+        int j = 0;
+        while (i >= 0 && j < n)
+        {
+            if (matrix[i][j] <= mid)
+            {
+                count += (i + 1);
+                j++;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        return count;
     }
 };
 
