@@ -7,9 +7,22 @@ class Solution
 public:
     int arrayNesting(vector<int> &nums)
     {
-        vector<int> res;
-        int len = 0;
-        return 0;
+        vector<int> visited(nums.size());
+        int res = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int start = i;
+            int count = 0;
+            while (visited[start] != -1)
+            {
+                visited[start] = -1;
+                start = nums[start];
+                count++;
+            }
+            res = max(res, count);
+        }
+
+        return res;
     }
 };
 
