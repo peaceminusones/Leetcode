@@ -6,23 +6,42 @@ using namespace std;
 class Solution
 {
 public:
+    // string longestPalindrome(string s)
+    // {
+    //     string res = "";
+    //     int n_center = 2 * s.size() - 1;
+    //     for (int center = 0; center < n_center; center++)
+    //     {
+    //         int left = center / 2;
+    //         int right = center % 2 + left;
+
+    //         while (left >= 0 && right < s.size() && s[left] == s[right])
+    //         {
+    //             if (right - left + 1 > res.size())
+    //             {
+    //                 res = s.substr(left, right - left + 1);
+    //             }
+    //             left--;
+    //             right++;
+    //         }
+    //     }
+    //     return res;
+    // }
+
     string longestPalindrome(string s)
     {
+        vector<vector<int>> dp(s.size(), vector<int>(s.size()));
         string res = "";
-        int n_center = 2 * s.size() - 1;
-        for (int center = 0; center < n_center; center++)
+        for (int i = 0; i < s.size(); i++)
         {
-            int left = center / 2;
-            int right = center % 2 + left;
-
-            while (left >= 0 && right < s.size() && s[left] == s[right])
+            for (int j = 0; j <= i; j++)
             {
-                if (right - left + 1 > res.size())
+                if (s[i] == s[j] && (i - j < 2 || dp[i - 1][j + 1] > 0))
                 {
-                    res = s.substr(left, right - left + 1);
+                    dp[i][j] = 1;
+                    if (i - j + 1 > res.size())
+                        res = s.substr(j, i - j + 1);
                 }
-                left--;
-                right++;
             }
         }
         return res;

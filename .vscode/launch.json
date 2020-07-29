@@ -1,13 +1,20 @@
 {
     "version": "0.2.0",
-    "configurations": 
-    [
+    "configurations": [
         {
             "name": "C/C++",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
-            "args": [],
+            "args": [
+                "-g",
+                "-Wall",
+                "-std=c++11",
+                "-lpthread",
+                "${file}",
+                "-o",
+                "${file}.exe"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
