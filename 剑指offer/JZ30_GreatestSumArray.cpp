@@ -7,6 +7,8 @@ class Solution
 public:
     int FindGreatestSumOfSubArray(vector<int> array)
     {
+        if (array.empty())
+            return 0;
         vector<int> dp(array.size());
         dp[0] = array[0];
         int res = array[0];
