@@ -6,6 +6,7 @@ using namespace std;
 void print_thread_id(int id)
 {
     cout << "thread # " << id << '\n';
+    Sleep(1);
 }
 
 int main()
@@ -17,7 +18,10 @@ int main()
     }
 
     for (auto &th : threads)
+    {
         th.join();
+        
+    }
 
     return 0;
 }

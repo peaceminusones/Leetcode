@@ -5,6 +5,7 @@ using namespace std;
 class Solution
 {
 public:
+    // 第i层台阶组合 = i-1层台阶组合数 + i-2层台阶组合数
     int climbStairs(int n)
     {
         vector<int> dp(n+1);
