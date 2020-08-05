@@ -21,7 +21,7 @@ int main()
     int n;
     cin >> n;
     Solution s;
-    cout << s.rectcover(n) << endl;
+    cout << s.rectCover(n) << endl;
 
     return 0;
 }
