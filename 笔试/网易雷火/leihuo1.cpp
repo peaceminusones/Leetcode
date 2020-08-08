@@ -38,16 +38,6 @@ public:
             que.push(node->right);
         }
         return t;
-        // if (i < pow(n, 2))
-        // {
-        //     TreeNode *t = new TreeNode(i);
-        //     i++;
-        //     t->left = create(n, i);
-        //     i++;
-        //     t->right = create(n, i);
-        //     return t;
-        // }
-        // return NULL;
     }
 
     void inorder(TreeNode *root)
@@ -80,8 +70,6 @@ public:
         TreeNode *tmp = root->left;
         root->left = root->right;
         root->right = tmp;
-        // MirrorHelper(root->left);
-        // MirrorHelper(root->right);
     }
 
     void order(TreeNode *root, vector<int> &res)
