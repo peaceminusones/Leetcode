@@ -3,6 +3,7 @@
 #include <string>
 #include <numeric>
 #include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 class Solution
@@ -10,13 +11,21 @@ class Solution
 public:
     int admit(int n, vector<vector<int>> prof)
     {
-        vector<bool> atob(n);
-        vector<bool> btoa(n);
+        vector<vector<int>> adjacency(n + 1, vector<int>(n + 1));
+        for (int i = 0; i < prof.size(); i++)
+            adjacency[prof[i][0]][prof[i][1]] = 1;
+
+        for (int i = 0; i <= n; i++)
+        {
+            for (int j = 0; j <= n; j++)
+            {
+            }
+        }
     }
 
-    int find(vector<int> num, int x)
+    void Cycle(vector<int> trace, vector<vector<int>> adjacency, int i, int j)
     {
-        return find()
+        
     }
 };
 

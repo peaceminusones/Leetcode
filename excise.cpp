@@ -53,8 +53,8 @@ public:
 
 int main()
 {
-    B b;
-    b.func();
+    // B b;
+    // b.func();
 
     // cout << sizeof(unsigned int) << endl;
     // vector<int> data = {1, 3, 4, 5, 6};
@@ -83,6 +83,9 @@ int main()
     // string::iterator sit;
     // if (find(str.begin(), str.end(), '1') != str.end())
     //     cout << true << endl;
-
+    string str = "abcde";
+    cout << str.rfind('d') << endl;
+    str.erase(str.rfind('d'));
+    cout << str << endl;
     return 0;
 }
