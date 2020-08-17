@@ -30,7 +30,7 @@ public:
         // }
 
         // return prev;
-        
+
         if (head == NULL || head->next == NULL)
             return head;
 
@@ -46,6 +46,26 @@ public:
         }
 
         return prev;
+    }
+
+    ListNode *reverseList(ListNode *head)
+    {
+        if (head == NULL || head->next == NULL)
+            return head;
+
+        ListNode *p = head;
+        ListNode *cur = head;
+        ListNode *pre = NULL;
+
+        while (p)
+        {
+            p = p->next; // 必须先把p往后移动一位
+            cur->next = pre;
+            pre = cur;
+            cur = p;
+        }
+
+        return pre;
     }
 };
 
