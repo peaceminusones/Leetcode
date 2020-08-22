@@ -1,14 +1,14 @@
-#include <iostream>
-#include <vector>
-#include <set>
-#include <list>
-#include <stack>
-#include <deque>
-#include <queue>
-#include <algorithm>
-#include <map>
-#include <string>
-using namespace std;
+// #include <iostream>
+// #include <vector>
+// #include <set>
+// #include <list>
+// #include <stack>
+// #include <deque>
+// #include <queue>
+// #include <algorithm>
+// #include <map>
+// #include <string>
+// using namespace std;
 
 // class mystruct
 // {
@@ -27,65 +27,103 @@ using namespace std;
 //     return *(char *)&i; // 取出当前指针指向的一个字节
 // }
 
-class A
-{
-public:
-    int b = 1;
-    void funca()
-    {
-        cout << "class A" << endl;
-    }
+// class A
+// {
+// public:
+//     int b = 1;
+//     void funca()
+//     {
+//         cout << "class A" << endl;
+//     }
 
-private:
-    int a = 0;
-};
+// private:
+//     int a = 0;
+// };
 
-class B : protected A
+// class B : protected A
+// {
+// public:
+//     void func()
+//     {
+//         // cout << a << endl;
+//         cout << b << endl;
+//         funca();
+//     }
+// };
+
+// int main()
+// {
+// B b;
+// b.func();
+
+// cout << sizeof(unsigned int) << endl;
+// vector<int> data = {1, 3, 4, 5, 6};
+
+// sort(data.begin(), data.end(), cmp);
+// for (auto d : data)
+//     cout << d << " ";
+// cout << endl;
+// string str = "123.123.123";
+// cout << stoi(str) << endl;
+
+// string str = "1234";
+// cout << sizeof(str) << endl;
+
+// vector<int>::iterator it;
+// if (find(data.begin(), data.end(), 1) != data.end())
+// {
+//     cout << true << endl;
+// }
+
+// map<int, int> map = {{1, 2}, {2, 3}, {3, 4}};
+// if (map.find(1) != map.end())
+//     cout << true << endl;
+
+// string str = "1234";
+// string::iterator sit;
+// if (find(str.begin(), str.end(), '1') != str.end())
+//     cout << true << endl;
+//     string str = "abcde";
+//     cout << str.rfind('d') << endl;
+//     str.erase(str.rfind('d'));
+//     cout << str << endl;
+//     return 0;
+// }
+
+#include <iostream>
+#include <typeinfo>
+using namespace std;
+
+struct group
 {
-public:
-    void func()
-    {
-        // cout << a << endl;
-        cout << b << endl;
-        funca();
-    }
+    int type;
+    int len;
+    char *str = new char[len];
+    group(int t, int l) : type(t), len(l) {}
 };
 
 int main()
 {
-    // B b;
-    // b.func();
+    // int k;
+    // cin >> k;
+    // group g(k, 4);
 
-    // cout << sizeof(unsigned int) << endl;
-    // vector<int> data = {1, 3, 4, 5, 6};
+    // cout << sizeof(g) << endl;
+    // cout << sizeof(g.str) << endl;
 
-    // sort(data.begin(), data.end(), cmp);
-    // for (auto d : data)
-    //     cout << d << " ";
-    // cout << endl;
-    // string str = "123.123.123";
-    // cout << stoi(str) << endl;
+    char *a;
+    cout << typeid(a).name() << endl;
+    cout << sizeof(a) << endl;     // 10
+    cout << sizeof(a[10]) << endl; // 1
 
-    // string str = "1234";
-    // cout << sizeof(str) << endl;
-
-    // vector<int>::iterator it;
-    // if (find(data.begin(), data.end(), 1) != data.end())
+    // char *p = g->str;
+    // while (g->len)
     // {
-    //     cout << true << endl;
+    //     *(g->str) = 'a';
+    //     g->len--;
+    //     (g->str)++;
     // }
 
-    // map<int, int> map = {{1, 2}, {2, 3}, {3, 4}};
-    // if (map.find(1) != map.end())
-    //     cout << true << endl;
-
-    // string str = "1234";
-    // string::iterator sit;
-    // if (find(str.begin(), str.end(), '1') != str.end())
-    //     cout << true << endl;
-    string str = "abcde";
-    cout << str.rfind('d') << endl;
-    str.erase(str.rfind('d'));
-    cout << str << endl;
+    // cout << sizeof(g) << endl;
     return 0;
 }

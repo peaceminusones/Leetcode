@@ -67,15 +67,6 @@ public:
         if (j <= r)
             res.insert(res.end(), nums.begin() + j, nums.begin() + r);
 
-        // while (i <= m)
-        // {
-        //     res.push_back(nums[i++]);
-        // }
-        // while (j <= r)
-        // {
-        //     res.push_back(nums[j++]);
-        // }
-
         for (int i = 0; i < res.size(); i++)
         {
             nums[l + i] = res[i];

@@ -22,7 +22,7 @@ public:
     void print(vector<vector<int>> &matrix, int lx, int ly, int rx, int ry, vector<int> &res)
     {
         // 上面一行
-        for (int i = 0; i <= ry; i++)
+        for (int i = lx; i <= ry; i++)
             res.push_back(matrix[lx][i]);
 
         // 右边一列
@@ -41,7 +41,7 @@ public:
         // 如果不等，则输出左边一列
         if (ly != ry)
         {
-            for (int i = rx - 1; i >= rx + 1; i--)
+            for (int i = rx - 1; i >= lx + 1; i--)
                 res.push_back(matrix[i][ly]);
         }
     }

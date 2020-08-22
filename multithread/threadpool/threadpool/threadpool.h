@@ -46,14 +46,14 @@ private:
 	using Threads = vector<thread *>;
 	using TasksQue = priority_queue<TaskPair, vector<TaskPair>, TaskPriorityCmp>;
 	
-	int InitThreadsSize;
+	int InitThreadsSize;  // 初始化大小
 
-	Threads m_threads;
-	TasksQue m_tasks;
+	Threads m_threads;  // 线程数量
+	TasksQue m_tasks; // 任务数量
 
-	mutex m_mutex;
-	condition_variable m_cond;
-	bool m_isStarted;
+	mutex m_mutex;  // 锁
+	condition_variable m_cond;  // 条件变量
+	bool m_isStarted; // 是否开启线程池
 };
 
 
