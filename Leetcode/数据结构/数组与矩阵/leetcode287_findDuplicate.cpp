@@ -67,6 +67,19 @@ public:
 
         return slow;
     }
+
+    int findDuplicate3(vector<int> &nums)
+    {
+        for (int i = 0; i < nums.size(); i++)
+        {
+            while (nums[i] != nums[nums[i] - 1])
+                swap(nums[i], nums[nums[i] - 1]);
+            if (i != nums[i] - 1 && nums[i] == nums[nums[i] - 1])
+                return nums[i];
+        }
+
+        return 0;
+    }
 };
 
 int main()
@@ -76,10 +89,12 @@ int main()
     while (cin >> item)
     {
         nums.push_back(item);
+        if (cin.get() == '\n')
+            break;
     }
 
     Solution s;
-    int res = s.findDuplicate2(nums);
+    int res = s.findDuplicate3(nums);
     cout << res << endl;
     return 0;
 }

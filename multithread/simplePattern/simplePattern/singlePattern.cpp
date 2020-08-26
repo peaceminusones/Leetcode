@@ -6,9 +6,8 @@ using namespace std;
 class Singleton2
 {
 public:
-	using ptr = shared_ptr<Singleton2>;
-
-	static ptr getSingleton2()
+	/*using sptr = shared_ptr<Singleton2>;*/
+	static Singleton2* getSingleton2()
 	{
 		return m_instance;
 	}
@@ -18,26 +17,29 @@ private:
 	Singleton2() {};
 	Singleton2(const Singleton2&) {};
 	Singleton2& operator =(const Singleton2&) {};
-	static ptr m_instance;
+	
+	static Singleton2* m_instance;
 };
 
-Singleton2::ptr Singleton2::m_instance = Singleton2::ptr(new Singleton2());
+Singleton2* Singleton2::m_instance;
 
 int main()
 {
-
+	return 0;
 }
 
 // ÀÁººÄ£Ê½ =============================================================================
+template <class T>
 class Singleton
 {
 public:
+	/*using sptr = shared_ptr<Singleton2>;*/
 	static Singleton* getInstance()
 	{
-		if (m_instance_ptr == NULL)
+		if (m_instance_ptr == nullptr)
 		{
 			unique_lock<mutex> lock(m_mtx);
-			if (m_instance_ptr == NULL)
+			if (m_instance_ptr == nullptr)
 			{
 				m_instance_ptr = new Singleton();
 			}
@@ -46,10 +48,21 @@ public:
 	}
 
 private:
-	static mutex m_mtx;
-	static Singleton* m_instance_ptr;
 	Singleton(){}
 	Singleton(const Singleton&){}
 	Singleton& operator =(const Singleton&) {};
+	
+	static mutex m_mtx;
+	static Singleton* m_instance_ptr;
 };
 
+template<class T>
+Singleton<T>* Singleton<T>::m_instance_ptr = nullptr;
+template<class T>
+mutex Singleton<T>::m_mtx;
+
+int main()
+{
+	Singleton<int>* sin = Singleton<int>::getInstance();
+	return 0;
+}

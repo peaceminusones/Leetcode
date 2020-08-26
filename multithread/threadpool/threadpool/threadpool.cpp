@@ -36,7 +36,6 @@ void ThreadPool::stop()
 		cout << "ThreadPool::stop() notifyAll()" << endl;
 	}
 	
-
 	for (Threads::iterator it = m_threads.begin(); it != m_threads.end(); it++)
 	{
 		(*it)->join();
@@ -63,15 +62,7 @@ void ThreadPool::threadLoop()
 void ThreadPool::addTask(const ThreadPool::Task& task)
 {
 	unique_lock<mutex> lock(m_mutex);
-	TaskPair taskpair(level2, task);
-	m_tasks.push(taskpair);
-	m_cond.notify_one();
-}
-
-void ThreadPool::addTask(const ThreadPool::TaskPair& taskpair)
-{
-	unique_lock<mutex> lock(m_mutex);
-	m_tasks.push(taskpair);
+	m_tasks.push(task);
 	m_cond.notify_one();
 }
 
@@ -85,14 +76,14 @@ ThreadPool::Task ThreadPool::take()
 	}
 	cout << "ThreadPool::take() tid:" << this_thread::get_id() << " wakeup" << endl;
 
-	TaskPair taskpair;
+	Task task;
 	TasksQue::size_type size = m_tasks.size();
 	if (!m_tasks.empty() && m_isStarted)
 	{
-		taskpair = m_tasks.top();
+		task = m_tasks.front();
 		m_tasks.pop();
 		assert(size - 1 == m_tasks.size());
 	}
 
-	return taskpair.second;
+	return task;
 }

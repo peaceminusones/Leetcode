@@ -32,7 +32,7 @@ public:
 
     int rand7()
     {
-        srand(int(time(0)));
+        srand((unsigned)time(0));
         return rand() % 7 + 1;
     }
 };
