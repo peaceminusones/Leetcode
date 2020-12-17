@@ -10,6 +10,7 @@ public:
     {
         if (matrix.empty())
             return 0;
+        // 统计每个位置的入度
         vector<vector<int>> indegrees(matrix.size(), vector<int>(matrix[0].size()));
         vector<vector<int>> direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         for (int i = 0; i < matrix.size(); i++)
@@ -24,6 +25,7 @@ public:
             }
         }
 
+        // 入度为0的放入que中
         queue<pair<int, int>> que;
         for (int i = 0; i < indegrees.size(); i++)
         {
@@ -34,6 +36,7 @@ public:
             }
         }
 
+        // 对入度为0的进行广度优先遍历
         int level = 0;
         while (!que.empty())
         {

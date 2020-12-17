@@ -22,22 +22,18 @@ public:
 	void start();
 	void stop();
 	void addTask(const Task&);
+	void threadLoop();
+	Task take();
 
 private:
 	// 禁止复制拷贝
 	ThreadPool(const ThreadPool&);
 	const ThreadPool& operator=(const ThreadPool&);
 
-	void threadLoop();
-	Task take();
-
-	using Threads = vector<thread *>;
-	using TasksQue = queue<Task>;
-	
 	int InitThreadsSize;  // 初始化大小
 
-	Threads m_threads;  // 线程数量
-	TasksQue m_tasks; // 任务数量
+	vector<thread*> m_threads;  // 线程数量
+	queue<Task> m_tasks; // 任务数量
 
 	mutex m_mutex;  // 锁
 	condition_variable m_cond;  // 条件变量

@@ -36,7 +36,7 @@ void ThreadPool::stop()
 		cout << "ThreadPool::stop() notifyAll()" << endl;
 	}
 	
-	for (Threads::iterator it = m_threads.begin(); it != m_threads.end(); it++)
+	for (auto it = m_threads.begin(); it != m_threads.end(); it++)
 	{
 		(*it)->join();
 		delete* it;
@@ -77,7 +77,7 @@ ThreadPool::Task ThreadPool::take()
 	cout << "ThreadPool::take() tid:" << this_thread::get_id() << " wakeup" << endl;
 
 	Task task;
-	TasksQue::size_type size = m_tasks.size();
+	int size = m_tasks.size();
 	if (!m_tasks.empty() && m_isStarted)
 	{
 		task = m_tasks.front();

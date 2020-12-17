@@ -29,40 +29,65 @@ int main()
 }
 
 // ÀÁººÄ£Ê½ =============================================================================
-template <class T>
+//template <class T>
+//class Singleton
+//{
+//public:
+//	/*using sptr = shared_ptr<Singleton2>;*/
+//	static Singleton* getInstance()
+//	{
+//		if (m_instance_ptr == nullptr)
+//		{
+//			unique_lock<mutex> lock(m_mtx);
+//			if (m_instance_ptr == nullptr)
+//			{
+//				m_instance_ptr = new Singleton();
+//			}
+//		}
+//		return m_instance_ptr;
+//	}
+//
+//private:
+//	Singleton(){}
+//	Singleton(const Singleton&){}
+//	Singleton& operator =(const Singleton&) {};
+//	
+//	static mutex m_mtx;
+//	static Singleton* m_instance_ptr;
+//};
+//
+//template<class T>
+//Singleton<T>* Singleton<T>::m_instance_ptr = nullptr;
+//template<class T>
+//mutex Singleton<T>::m_mtx;
+//
+//int main()
+//{
+//	Singleton<int>* sin = Singleton<int>::getInstance();
+//	return 0;
+//}
+
+
 class Singleton
 {
-public:
-	/*using sptr = shared_ptr<Singleton2>;*/
 	static Singleton* getInstance()
 	{
-		if (m_instance_ptr == nullptr)
+		if (m_instance == nullptr)
 		{
 			unique_lock<mutex> lock(m_mtx);
-			if (m_instance_ptr == nullptr)
+			if (m_instance == nullptr)
 			{
-				m_instance_ptr = new Singleton();
+				m_instance = new Singleton();
 			}
 		}
-		return m_instance_ptr;
+		return m_instance;
 	}
 
 private:
 	Singleton(){}
-	Singleton(const Singleton&){}
-	Singleton& operator =(const Singleton&) {};
-	
+	Singleton(const Singleton &){}
+	Singleton &operator=(const Singleton &){}
+
 	static mutex m_mtx;
-	static Singleton* m_instance_ptr;
+	static Singleton* m_instance;
 };
-
-template<class T>
-Singleton<T>* Singleton<T>::m_instance_ptr = nullptr;
-template<class T>
-mutex Singleton<T>::m_mtx;
-
-int main()
-{
-	Singleton<int>* sin = Singleton<int>::getInstance();
-	return 0;
-}

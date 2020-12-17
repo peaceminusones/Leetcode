@@ -76,7 +76,7 @@ public:
         int sum = accumulate(nums.begin(), nums.end(), 0);
         if ((sum + S) % 2 == 1)
             return 0;
-        
+
         S = (sum + S) / 2;
         vector<int> dp(S + 1);
         dp[0] = 1;
@@ -92,26 +92,41 @@ public:
     }
 };
 
+struct A
+{
+    int i;
+    short s;
+    char c;
+};
+
+void A(int *p)
+{
+    cout << p[0] << p[1] << endl;
+}
+
 int main()
 {
-    vector<int> nums;
-    int item;
-    while (cin >> item)
-    {
-        nums.push_back(item);
-    }
-    cin.clear();
-    cin.ignore();
+    // vector<int> nums;
+    // int item;
+    // while (cin >> item)
+    // {
+    //     nums.push_back(item);
+    // }
+    // cin.clear();
+    // cin.ignore();
 
-    int S;
-    cin >> S;
+    // int S;
+    // cin >> S;
 
-    Solution s;
-    int res = s.findTargetSumWays_final(nums, S);
-    cout << res << endl;
+    // Solution s;
+    // int res = s.findTargetSumWays_final(nums, S);
+    // cout << res << endl;
+    // cout << sizeof(L"Maxhub我们") << endl;
     // int res2 = s.findTargetSumWays_dp(nums, S);
     // cout << res2 << endl;
     // int res3 = s.findTargetSumWays_dp_1(nums, S);
     // cout << res3 << endl;
+    int p[] = {1, 2, 3};
+    A(p+1);
     return 0;
 }
